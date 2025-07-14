@@ -28,7 +28,11 @@ public class Service {
     private String description;
 
     @Column(nullable = false)
-    private int prix;
+    private int prixMin;
+
+    @Column(nullable = false)
+    private int prixMax;
+
     @Lob
     @Column(name = "imageUrl", columnDefinition="LONGBLOB") // MySQL
     private byte[] imageUrl;
@@ -84,8 +88,11 @@ public class Service {
         serviceDto.setId(id);
         serviceDto.setNom(nom);
         serviceDto.setDescription(description);
-        serviceDto.setPrix(prix);
+        serviceDto.setPrixMax(prixMax);
+        serviceDto.setPrixMin(prixMin);
         serviceDto.setStatut(statut);
+        serviceDto.setVilleNom(this.getVilleNom());
+        serviceDto.setCategorieNom(this.getCategorieNom());
 
         if (imageUrl != null && imageUrl.length > 0) {
             String base64Image = Base64.getEncoder().encodeToString(imageUrl);

@@ -18,7 +18,9 @@ public class ServiceDTO {
 
     private String description;
 
-    private int prix;
+    private int prixMin;
+
+    private int prixMax;
 
     private StatutService statut;
 
@@ -31,9 +33,9 @@ public class ServiceDTO {
 
     private Long villeId;
 
-    private String categorieNom;
-
     private String villeNom;
+
+    private String categorieNom;
 
     private List<Utilisateur> techniciens = new ArrayList<>();
 

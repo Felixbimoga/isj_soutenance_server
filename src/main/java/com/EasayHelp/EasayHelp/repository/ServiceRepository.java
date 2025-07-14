@@ -15,13 +15,16 @@ public interface ServiceRepository extends JpaRepository<Service,Long> {
 
     List<Service> findByNomContainingIgnoreCase(String motCle);
 
-    List<Service> findByPrixLessThan(int prixMax);
+    List<Service> findByPrixMinLessThan(int prix);
+
+    List<Service> findByPrixMaxLessThan(int prix);
+
+    List<Service> findByPrixMinGreaterThanEqualAndPrixMaxLessThanEqual(int min, int max);
 
     List<Service> findByStatut(StatutService statut);
 
     List<Service> findAllServiceByCategorieId(Long categorie_id);
 
     List<Service> findAllServiceByVilleId(Long ville_id);
-
 
 }

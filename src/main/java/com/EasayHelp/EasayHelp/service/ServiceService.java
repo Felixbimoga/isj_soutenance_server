@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface ServiceService {
 
-
     Service createService(ServiceDTO serviceDTO);
 
     List<ServiceDTO> getAllService();

@@ -37,7 +37,8 @@ public class ServiceServiceImpl implements ServiceService {
         com.EasayHelp.EasayHelp.entity.Service service = new com.EasayHelp.EasayHelp.entity.Service();
         service.setNom(serviceDTO.getNom());
         service.setDescription(serviceDTO.getDescription());
-        service.setPrix(serviceDTO.getPrix());
+        service.setPrixMax(serviceDTO.getPrixMax());
+        service.setPrixMin(serviceDTO.getPrixMin());
         service.setStatut(serviceDTO.getStatut());
         service.setCategorie(categorie);
         service.setVille(ville);
@@ -81,7 +82,8 @@ public class ServiceServiceImpl implements ServiceService {
         return serviceRepository.findById(serviceDTO.getId()).map(service -> {
             service.setNom(serviceDTO.getNom());
             service.setDescription(serviceDTO.getDescription());
-            service.setPrix(serviceDTO.getPrix());
+            service.setPrixMax(serviceDTO.getPrixMax());
+            service.setPrixMin(serviceDTO.getPrixMin());
             //service.setActif(serviceDTO.isActif());
             //service.setImageUrl(serviceDTO.getImageUrl());
             serviceRepository.save(service);
