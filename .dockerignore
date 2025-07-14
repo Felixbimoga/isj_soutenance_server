@@ -1,0 +1,5 @@
+.git
+target/  # Pour Maven
+build/   # Pour Gradle
+*.iml
+.idea
