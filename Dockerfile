@@ -1,25 +1,28 @@
-# 🔧 Étape 1 : Build de l'application avec Maven
-FROM eclipse-temurin:17-jdk-jammy as builder
+# 🔧 Étape 1 : Build avec Maven
+FROM maven:3.9.6-eclipse-temurin-17 AS builder
 
 WORKDIR /app
 
-# Copie des fichiers nécessaires
+# Copie des fichiers Maven
 COPY pom.xml .
+
+# Téléchargement des dépendances pour cache Docker
+RUN mvn dependency:go-offline
+
+# Copie du code source après le cache
 COPY src ./src
 
-# Build de l'application (ignore les tests)
-RUN ./mvnw clean package -DskipTests
+# Build sans les tests
+RUN mvn clean package -DskipTests
 
-# 🚀 Étape 2 : Image d'exécution finale
+# 🚀 Étape 2 : Exécution
 FROM eclipse-temurin:17-jre-jammy
 
 WORKDIR /app
 
-# Copie du JAR depuis l'étape builder
+# Copie du JAR compilé
 COPY --from=builder /app/target/*.jar app.jar
 
-# Exposition du port
 EXPOSE 8081
 
-# Commande de démarrage
 ENTRYPOINT ["java", "-jar", "app.jar"]
