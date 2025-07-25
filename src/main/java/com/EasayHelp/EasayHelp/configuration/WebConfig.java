@@ -18,10 +18,11 @@ public class WebConfig implements WebMvcConfigurer {
         logger.info("Configuration CORS chargée !");
     }
 
+    @Bean
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200", "http://localhost:8100", "https://isj-soutenance-okp1.vercel.app")
+                .allowedOrigins("http://localhost:4200", "http://localhost:8100", "https://isj-soutenance-okp1.vercel.app", "http://localhost")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
