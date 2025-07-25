@@ -17,8 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void init() {
         logger.info("Configuration CORS chargée !");
     }
-
-    @Bean
+    
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
